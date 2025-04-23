@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: nodejs-docker-app-pipeline-run
+spec:
+  pipelineRef:
+    name: nodejs-docker-app-pipeline
+  params:
+    - name: repository
+      value: 'https://github.com/tuanle273/nodejs-docker.git'
+    - name: revision
+      value: 'main'
+    - name: image
+      value: 'quay.io/tuanla123/nodejs-docker-app:latest'
+  workspaces:
+    - name: workspace
+      persistentVolumeClaim:
+        claimName: nfs-client
