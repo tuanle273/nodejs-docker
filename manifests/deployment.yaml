@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejs-docker-app
-        image: quay.io/yourusername/nodejs-docker-app:latest
+        image: quay.io/tuanla123/nodejs-docker-app:latest
         ports:
         - containerPort: 3000
         env:

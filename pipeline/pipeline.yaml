@@ -9,7 +9,7 @@ spec:
         name: git-clone
       params:
         - name: repository
-          value: 'https://github.com/tuanle273/gitops.git'
+          value: 'https://github.com/tuanle273/nodejs-docker.git'
         - name: revision
           value: 'main'
         - name: destination-dir

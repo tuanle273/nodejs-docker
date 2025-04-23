@@ -2,13 +2,13 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: git-clone
-  namespace: your-namespace
+  namespace: liberty-rest
 spec:
   steps:
     - name: clone
       image: alpine/git
       script: |
-        git clone https://github.com/tuanle273/your-repo.git
+        git clone https://github.com/tuanle273/nodejs-docker.git
         cd your-repo
       workingDir: /workspace/git-repo
   results:
