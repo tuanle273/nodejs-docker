@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: nodejs-docker-app
+  namespace: default
+spec:
+  to:
+    kind: Service
+    name: nodejs-docker-app
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

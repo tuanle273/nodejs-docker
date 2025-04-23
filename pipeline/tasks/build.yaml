@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build
+  namespace: your-namespace
+spec:
+  steps:
+    - name: build-image
+      image: docker
+      script: |
+        #!/usr/bin/env bash
+        docker build -t quay.io/your-username/nodejs-docker-app:latest .
+        echo "Pushing the Docker image to Quay.io"
+        docker push quay.io/your-username/nodejs-docker-app:latest
+  results:
+    - name: image-url
+      description: The URL of the built image

@@ -1,0 +1,9 @@
+# filepath: /nodejs-docker-app/nodejs-docker-app/.dockerignore
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+README.md
+package-lock.json
+.git
+.gitignore

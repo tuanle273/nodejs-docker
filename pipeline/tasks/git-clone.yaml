@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-clone
+  namespace: your-namespace
+spec:
+  steps:
+    - name: clone
+      image: alpine/git
+      script: |
+        git clone https://github.com/tuanle273/your-repo.git
+        cd your-repo
+      workingDir: /workspace/git-repo
+  results:
+    - name: repo-url
+      description: The URL of the cloned repository
+    - name: revision
+      description: The revision of the cloned repository

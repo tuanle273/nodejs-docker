@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-docker-app
+  labels:
+    app: nodejs-docker-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-docker-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-docker-app
+    spec:
+      containers:
+      - name: nodejs-docker-app
+        image: quay.io/yourusername/nodejs-docker-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"

@@ -1,0 +1,43 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: nodejs-docker-app-pipeline
+spec:
+  tasks:
+    - name: git-clone
+      taskRef:
+        name: git-clone
+      params:
+        - name: repository
+          value: 'https://github.com/tuanle273/gitops.git'
+        - name: revision
+          value: 'main'
+        - name: destination-dir
+          value: 'workspace'
+      workspaces:
+        - name: workspace
+
+    - name: build
+      taskRef:
+        name: build
+      runAfter:
+        - git-clone
+      params:
+        - name: image
+          value: 'quay.io/tuanla123/nodejs-docker-app:latest'
+      workspaces:
+        - name: workspace
+
+    - name: apply-manifests
+      taskRef:
+        name: apply-manifests
+      runAfter:
+        - build
+      params:
+        - name: manifests-dir
+          value: 'manifests'
+      workspaces:
+        - name: workspace
+
+  workspaces:
+    - name: workspace

@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: apply-manifests
+spec:
+  steps:
+    - name: apply-deployment
+      image: quay.io/openshift/origin-cli
+      script: |
+        oc apply -f ./manifests/deployment.yaml
+    - name: apply-service
+      image: quay.io/openshift/origin-cli
+      script: |
+        oc apply -f ./manifests/service.yaml
+    - name: apply-route
+      image: quay.io/openshift/origin-cli
+      script: |
+        oc apply -f ./manifests/route.yaml
